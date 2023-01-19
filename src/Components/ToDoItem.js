@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
 import "./ToDoItem.css";
 
 const ToDoItem = () => {
@@ -22,24 +24,32 @@ const ToDoItem = () => {
   };
 
   return (
-    <div className="todo_bg">
+    <div className="todo-bg">
+      <div>
+        <h1>To Do List</h1>
+        <TextField
+        className="todo-bg_textfield"
+          helperText="Add to your schedule"
+          type="text"
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          id="outlined-basic"
+          label="Add a task here"
+          variant="outlined"
+        />
         
-      <h1>Todo List</h1>
-      
-      <input
-        type="text"
-        value={input}
-        onChange={(e) => setInput(e.target.value)}
-      />
-      <button onClick={() => addTodo(input)}>+</button>
-      <ul>
-        {list.map((todo) => (
-          <li key={todo.id}>
-            {todo.todo}
-            <button btn onClick={() => deleteTodo(todo.id)}>&times;</button>
-          </li>
-        ))}
-      </ul>
+        <Button variant="contained" onClick={() => addTodo(input)}>+</Button>
+        <ul>
+          {list.map((todo) => (
+            <li key={todo.id}>
+              {todo.todo}
+              <button className="btn" btn onClick={() => deleteTodo(todo.id)}>
+                &times;
+              </button>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 };

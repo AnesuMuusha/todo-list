@@ -21,14 +21,17 @@ const ToDoItem = () => {
   const deleteTodo = (id) => {
     const newList = list.filter((todo) => todo.id !== id);
     setList(newList);
+    alert("deleting Item")
   };
+
+  
 
   return (
     <div className="todo-bg">
       <div>
         <h1>To Do List</h1>
         <TextField
-        className="todo-bg_textfield"
+          className="todo-bg_textfield"
           helperText="Add to your schedule"
           type="text"
           value={input}
@@ -37,18 +40,30 @@ const ToDoItem = () => {
           label="Add a task here"
           variant="outlined"
         />
-        
-        <Button variant="contained" onClick={() => addTodo(input)}>+</Button>
-        <ul>
+        <Button variant="contained" onClick={() => addTodo(input)}>
+          +
+        </Button>
+        <ul
+          style={{
+            lineStyle: "none"
+          }}
+        >
+
           {list.map((todo) => (
-            <li key={todo.id}>
+          
+          <li key={todo.id}>
+             
               {todo.todo}
+             
               <button className="btn" btn onClick={() => deleteTodo(todo.id)}>
                 &times;
               </button>
+          
             </li>
           ))}
+        
         </ul>
+      
       </div>
     </div>
   );
